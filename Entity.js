@@ -1,4 +1,4 @@
-class Entity {
+export default class Entity {
     constructor() {
         this.id = (+new Date()).toString(16) + (Math.random() * 1000000 | 0).toString(16)
         this.components = {}
@@ -22,5 +22,3 @@ class Entity {
         console.log(JSON.stringify(this, null, 4));
     }
 }
-
-module.exports = Entity

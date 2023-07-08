@@ -1,4 +1,4 @@
-class HealthSystem {
+export default class HealthSystem {
     constructor(entities) {
         this.entities = entities
     }
@@ -37,5 +37,3 @@ class HealthSystem {
         })
     }
 }
-
-module.exports = HealthSystem
