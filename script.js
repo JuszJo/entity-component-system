@@ -10,6 +10,7 @@ import RenderSystem from "./systems/RenderSystem.js";
 
 const entities = {}
 
+// player
 const entity = new Entity()
 
 entity.addComponent(new Health())
@@ -21,10 +22,9 @@ entity.addComponent(new Position({
     y: 200
 }))
 
-// entity.addComponent(new Gun())
-
 entities[entity.id] = entity
 
+// gun
 const gun = new Entity()
 
 gun.addComponent(new Dimension({
@@ -49,12 +49,15 @@ const shootingSystem = new ShootingSystem(entities)
 const renderSystem = new RenderSystem(entities)
 
 movementSystem.listen()
+
 shootingSystem.listen()
 
 update()
 
 function update() {
     movementSystem.movePlayer()
+
+    shootingSystem.updateBullet()
 
     renderSystem.render()
 

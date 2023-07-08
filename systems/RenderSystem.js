@@ -21,13 +21,14 @@ export default class RenderSystem {
             const currentEntity = this.entities[id]
 
             // console.log(currentEntity);
-
-            this.drawingSurface.fillRect(
-                currentEntity.components.position.value.x,
-                currentEntity.components.position.value.y,
-                currentEntity.components.dimension.value.width,
-                currentEntity.components.dimension.value.height,
-            )
+            if(currentEntity.components.position) {
+                this.drawingSurface.fillRect(
+                    currentEntity.components.position.value.x,
+                    currentEntity.components.position.value.y,
+                    currentEntity.components.dimension.value.width,
+                    currentEntity.components.dimension.value.height,
+                )
+            }
         }
     }
 }

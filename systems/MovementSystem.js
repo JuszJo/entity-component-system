@@ -50,7 +50,7 @@ export default class MovementSystem {
         for(const id in this.entities) {
             const currentEntity = this.entities[id]
 
-            if(currentEntity.components.position) {
+            if(currentEntity.components.position && !currentEntity.components.bullet) {
                 if(controls.up) {
                     currentEntity.components.position.value.y -= 5
                 }
