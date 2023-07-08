@@ -63,7 +63,7 @@ const entities = {}
 // entities[gun.id] = gun
 
 // player1
-const player1 = new Entity()
+const player1 = new Entity("player1")
 
 player1.addComponent(new Position({
     x: 1,
@@ -80,7 +80,7 @@ player1.addComponent(new Movement())
 entities[player1.id] = player1
 
 // player2
-const player2 = new Entity()
+const player2 = new Entity("player2")
 
 player2.addComponent(new Position({
     x: 790,

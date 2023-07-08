@@ -1,6 +1,7 @@
 export default class Entity {
-    constructor(value) {
+    constructor(name) {
         this.id = (+new Date()).toString(16) + (Math.random() * 1000000 | 0).toString(16)
+        this.name = name
         this.components = {}
     }
 

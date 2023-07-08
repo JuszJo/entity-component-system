@@ -1,3 +1,5 @@
+import Collision from "../components/Collision.js"
+
 export default class CollisionSystem {
     constructor(entities) {
         this.entities = entities
@@ -15,15 +17,15 @@ export default class CollisionSystem {
             }
         }
 
-        let ballMain = null
-        let objectMain = null
+        let ballEntity = null
+        let playerEntity = null
 
         let ball = null
-        let object2 = null
+        let player = null
 
         this.collidables.forEach(entity => {
             if(entity.components.ball) {
-                ballMain = entity
+                ballEntity = entity
 
                 ball = {
                     x: entity.components.position.value.x,
@@ -33,9 +35,9 @@ export default class CollisionSystem {
                 }
             }
             else {
-                objectMain = entity
+                playerEntity = entity
 
-                object2 = {
+                player = {
                     x: entity.components.position.value.x,
                     y: entity.components.position.value.y,
                     width: entity.components.dimension.value.width,
@@ -45,13 +47,41 @@ export default class CollisionSystem {
         })
 
         if(
-            ball.x + ball.width > object2.x &&
-            ball.y + ball.height > object2.y &&
-            ball.x < object2.x + object2.width &&
-            ball.y < object2.y + object2.height
+            ball.x + ball.width > player.x &&
+            ball.y + ball.height > player.y &&
+            ball.x < player.x + player.width &&
+            ball.y < player.y + player.height
 
         ) {
-            ballMain.components.ball.forward = false
+
+            if(ballEntity.components.ball.forward) {
+                ballEntity.components.ball.forward = false
+
+                for(const id in this.entities) {
+                    const currentEntity = this.entities[id]
+
+                    if(currentEntity.name == "player2") {
+                        currentEntity.removeComponent("collision")
+                    }
+                    if(currentEntity.name == "player1") {
+                        currentEntity.addComponent(new Collision())
+                    }
+                }
+            }
+            else {
+                ballEntity.components.ball.forward = true
+                
+                for(const id in this.entities) {
+                    const currentEntity = this.entities[id]
+                    
+                    if(currentEntity.name == "player1") {
+                        currentEntity.removeComponent("collision")
+                    }
+                    if(currentEntity.name == "player2") {
+                        currentEntity.addComponent(new Collision())
+                    }
+                }
+            }
         }
     }
 }
