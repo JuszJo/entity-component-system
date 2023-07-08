@@ -20,12 +20,12 @@ export default class MovementSystem {
             if(key == "s") {
                 controls.down = true
             }
-            if(key == "a") {
-                controls.left = true
-            }
-            if(key == "d") {
-                controls.right = true
-            }
+            // if(key == "a") {
+            //     controls.left = true
+            // }
+            // if(key == "d") {
+            //     controls.right = true
+            // }
         })
 
         addEventListener('keyup', e => {
@@ -37,12 +37,12 @@ export default class MovementSystem {
             if(key == "s") {
                 controls.down = false
             }
-            if(key == "a") {
-                controls.left = false
-            }
-            if(key == "d") {
-                controls.right = false
-            }
+            // if(key == "a") {
+            //     controls.left = false
+            // }
+            // if(key == "d") {
+            //     controls.right = false
+            // }
         })
     }
 

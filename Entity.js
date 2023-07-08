@@ -1,7 +1,11 @@
 export default class Entity {
-    constructor() {
+    constructor(value) {
         this.id = (+new Date()).toString(16) + (Math.random() * 1000000 | 0).toString(16)
         this.components = {}
+
+        if(value == "ball") {
+            
+        }
     }
 
     addComponent(component) {

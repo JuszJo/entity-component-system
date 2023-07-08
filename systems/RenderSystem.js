@@ -21,13 +21,26 @@ export default class RenderSystem {
             const currentEntity = this.entities[id]
 
             // console.log(currentEntity);
-            if(currentEntity.components.position) {
+            if(currentEntity.components.position && ! currentEntity.components.ball) {
                 this.drawingSurface.fillRect(
                     currentEntity.components.position.value.x,
                     currentEntity.components.position.value.y,
                     currentEntity.components.dimension.value.width,
                     currentEntity.components.dimension.value.height,
                 )
+            }
+            else if(currentEntity.components.ball) {
+                const ball = currentEntity.components
+
+                this.drawingSurface.beginPath();
+                this.drawingSurface.arc(
+                    ball.position.value.x, ball.position.value.y,
+                    ball.dimension.value.width,
+                    0, Math.PI * 2,
+                    false
+                );
+                this.drawingSurface.fill()
+                this.drawingSurface.closePath();
             }
         }
     }

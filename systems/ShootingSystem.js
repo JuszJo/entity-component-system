@@ -22,9 +22,21 @@ export default class ShootingSystem {
                         shoot = true
                         console.log("Shoot");
 
-                        this.createBullet(currentEntity.components.position.value)
+                        this.updateBall()
+
+                        // this.createBullet(currentEntity.components.position.value)
                     }
                 })
+            }
+        }
+    }
+
+    updateBall() {
+        for(const id in this.entities) {
+            const currentEntity = this.entities[id]
+
+            if(currentEntity.components.ball) {
+                currentEntity.components.position.value.x += 5                
             }
         }
     }
