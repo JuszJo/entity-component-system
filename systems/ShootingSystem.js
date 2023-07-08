@@ -36,7 +36,20 @@ export default class ShootingSystem {
             const currentEntity = this.entities[id]
 
             if(currentEntity.components.ball) {
-                currentEntity.components.position.value.x += 5                
+                switch (currentEntity.components.ball.forward) {
+                    case true:
+                        currentEntity.components.position.value.x += 5
+                        
+                        break;
+                        
+                        case false:
+                        currentEntity.components.position.value.x -= 5
+                        
+                        break;
+                
+                    default:
+                        break;
+                }
             }
         }
     }

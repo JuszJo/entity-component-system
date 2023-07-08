@@ -8,6 +8,8 @@ import MovementSystem from "./systems/MovementSystem.js";
 import Gun from "./components/Gun.js";
 import ShootingSystem from "./systems/ShootingSystem.js";
 import Ball from "./components/Ball.js";
+import Collision from "./components/Collision.js";
+import CollisionSystem from "./systems/CollisionSystem.js";
 import RenderSystem from "./systems/RenderSystem.js";
 
 const entities = {}
@@ -92,6 +94,8 @@ player2.addComponent(new Dimension({
 
 player2.addComponent(new Movement())
 
+player2.addComponent(new Collision())
+
 entities[player2.id] = player2
 
 // ball
@@ -107,9 +111,9 @@ ball.addComponent(new Dimension({
     height: 5
 }))
 
-ball.addComponent(new Movement())
-
 ball.addComponent(new Ball(10))
+
+ball.addComponent(new Collision())
 
 entities[ball.id] = ball
 
@@ -119,24 +123,22 @@ const movementSystem = new MovementSystem(entities)
 
 const shootingSystem = new ShootingSystem(entities)
 
+const collisionSystem = new CollisionSystem(entities)
+
 const renderSystem = new RenderSystem(entities)
 
 movementSystem.listen()
 
 shootingSystem.listen()
 
-addEventListener("keydown", e => {
-    if(e.key == "Enter") {
-        update()
-        
-        ball.removeComponent("movement")
-    }
-})
+update()
 
 function update() {
     movementSystem.movePlayer()
 
     shootingSystem.updateBall()
+
+    collisionSystem.checkCollisions()
 
     renderSystem.render()
 
