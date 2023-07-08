@@ -22,8 +22,8 @@ export default class RenderSystem {
             this.drawingSurface.fillRect(
                 currentEntity.components.position.value.x,
                 currentEntity.components.position.value.y,
-                50,
-                50,
+                currentEntity.components.dimension.value.width,
+                currentEntity.components.dimension.value.height,
             )
         }
     }

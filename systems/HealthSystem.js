@@ -3,7 +3,7 @@ export default class HealthSystem {
         this.entities = entities
     }
     
-    reduceHealth() {
+    reduceHealthCLI() {
         for(const id in this.entities) {
             const currentEntity = this.entities[id]
 
@@ -21,7 +21,7 @@ export default class HealthSystem {
         }
     }
 
-    listen() {
+    listenCLI() {
         const readline = require('readline')
         
         readline.emitKeypressEvents(process.stdin)
