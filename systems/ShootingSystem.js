@@ -55,6 +55,12 @@ export default class ShootingSystem {
 
             if(currentEntity.components.bullet) {
                 currentEntity.components.position.value.x += 5
+
+                if(currentEntity.components.position.value.x > 700) {
+                    currentEntity.removeComponent("dimension")
+                    currentEntity.removeComponent("position")
+                    currentEntity.removeComponent("bullet")
+                }
             }
         }
     }
