@@ -5,19 +5,22 @@ export default class RenderSystem {
         this.canvas = document.querySelector('canvas')
 
         this.canvasWidth = 800
-        this.canvasHeigth = 600
+        this.canvasHeight = 600
+
 
         this.canvas.width = this.canvasWidth
-        this.canvas.height = this.canvasHeigth
+        this.canvas.height = this.canvasHeight
 
         this.drawingSurface = this.canvas.getContext('2d')
     }
 
     render() {
-        this.drawingSurface.clearRect(0, 0, this.canvasWidth, this.canvasHeigth)
+        this.drawingSurface.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
 
         for(const id in this.entities) {
             const currentEntity = this.entities[id]
+
+            // console.log(currentEntity);
 
             this.drawingSurface.fillRect(
                 currentEntity.components.position.value.x,
