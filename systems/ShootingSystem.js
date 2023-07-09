@@ -36,15 +36,16 @@ export default class ShootingSystem {
             const currentEntity = this.entities[id]
 
             if(currentEntity.components.ball) {
+                if(currentEntity.components.ball.speedY < 0) {
+                    currentEntity.components.ball.angle *= -1
+                }
+                
                 let angle = currentEntity.components.ball.angle * Math.PI / 180
 
-                if(currentEntity.components.ball.speedY < 0) {
-                    console.log("Reverse");
-                }
                 if(currentEntity.components.ball.forward) {
                     const x = Math.cos(angle)
                     const y = Math.sin(angle)
-    
+
                     currentEntity.components.position.value.x += (x * currentEntity.components.ball.speedX)
                     currentEntity.components.position.value.y += (y * currentEntity.components.ball.speedY)
                 }

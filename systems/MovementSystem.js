@@ -5,6 +5,13 @@ const controls = {
     right: false,
 }
 
+const controlsArrow = {
+    up: false,
+    down: false,
+    left: false,
+    right: false,
+}
+
 export default class MovementSystem {
     constructor(entities) {
         this.entities = entities
@@ -19,6 +26,12 @@ export default class MovementSystem {
             }
             if(key == "s") {
                 controls.down = true
+            }
+            if(key == "ArrowUp") {
+                controlsArrow.up = true
+            }
+            if(key == "ArrowDown") {
+                controlsArrow.down = true
             }
             // if(key == "a") {
             //     controls.left = true
@@ -37,6 +50,12 @@ export default class MovementSystem {
             if(key == "s") {
                 controls.down = false
             }
+            if(key == "ArrowUp") {
+                controlsArrow.up = false
+            }
+            if(key == "ArrowDown") {
+                controlsArrow.down = false
+            }
             // if(key == "a") {
             //     controls.left = false
             // }
@@ -50,7 +69,7 @@ export default class MovementSystem {
         for(const id in this.entities) {
             const currentEntity = this.entities[id]
 
-            if(currentEntity.components.movement) {
+            if(currentEntity.name == "player1") {
                 if(controls.up) {
                     currentEntity.components.position.value.y -= 5
                 }
@@ -61,6 +80,20 @@ export default class MovementSystem {
                     currentEntity.components.position.value.x -= 5
                 }
                 if(controls.right) {
+                    currentEntity.components.position.value.x += 5
+                }
+            }
+            if(currentEntity.name == "player2") {
+                if(controlsArrow.up) {
+                    currentEntity.components.position.value.y -= 5
+                }
+                if(controlsArrow.down) {
+                    currentEntity.components.position.value.y += 5
+                }
+                if(controlsArrow.left) {
+                    currentEntity.components.position.value.x -= 5
+                }
+                if(controlsArrow.right) {
                     currentEntity.components.position.value.x += 5
                 }
             }

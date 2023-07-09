@@ -20,9 +20,11 @@ export default class CollisionSystem {
 
             if(entity.name == "ball") {
                 if(entity.y - entity.height / 2 < 0) {
+                    currentEntity.components.position.value.y = entity.height / 2
                     currentEntity.components.ball.speedY *= -1
                 }
                 else if(entity.y + entity.height / 2 > 600) {
+                    currentEntity.components.position.value.y = 600 - entity.height / 2
                     currentEntity.components.ball.speedY *= -1
                 }
             }
@@ -87,12 +89,12 @@ export default class CollisionSystem {
 
             const dif = ball.y - half
 
-            if(dif < 0) {
-                // console.log("top", dif);
-            }
-            else if(dif > 0) {
-                // console.log("bottom", dif);
-            }
+            // if(dif < 0) {
+            //     // console.log("top", dif);
+            // }
+            // else if(dif > 0) {
+            //     // console.log("bottom", dif);
+            // }
 
             const angle = (dif / 20) * 30
 
