@@ -139,6 +139,8 @@ function update() {
     shootingSystem.updateBall()
 
     collisionSystem.checkCollisions()
+    
+    collisionSystem.checkWallCollision()
 
     renderSystem.render()
 

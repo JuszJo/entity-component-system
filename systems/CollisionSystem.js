@@ -6,6 +6,37 @@ export default class CollisionSystem {
         this.collidables = []
     }
 
+    checkWallCollision() {
+        for(const id in this.entities) {
+            const currentEntity = this.entities[id]
+
+            const entity = {
+                x: currentEntity.components.position.value.x,
+                y: currentEntity.components.position.value.y,
+                width: currentEntity.components.dimension.value.width,
+                height: currentEntity.components.dimension.value.height,
+                name: currentEntity.name
+            }
+
+            if(entity.name == "ball") {
+                if(entity.y - entity.height / 2 < 0) {
+                    currentEntity.components.ball.speedY *= -1
+                }
+                else if(entity.y + entity.height / 2 > 600) {
+                    currentEntity.components.ball.speedY *= -1
+                }
+            }
+            else {
+                if(entity.y < 0) {
+                    currentEntity.components.position.value.y = 0
+                }
+                else if(entity.y + entity.height > 600){
+                    currentEntity.components.position.value.y = 600 - entity.height
+                }
+            }
+        }
+    }
+
     checkCollisions() {
         this.collidables.splice(0)
 
@@ -47,12 +78,25 @@ export default class CollisionSystem {
         })
 
         if(
-            ball.x + ball.width > player.x &&
-            ball.y + ball.height > player.y &&
-            ball.x < player.x + player.width &&
-            ball.y < player.y + player.height
-
+            ball.x + ball.width / 2 > player.x &&
+            ball.y + ball.height / 2 > player.y &&
+            ball.x - ball.width / 2 < player.x + player.width &&
+            ball.y - ball.height / 2 < player.y + player.height
         ) {
+            const half = player.height / 2 + player.y
+
+            const dif = ball.y - half
+
+            if(dif < 0) {
+                // console.log("top", dif);
+            }
+            else if(dif > 0) {
+                // console.log("bottom", dif);
+            }
+
+            const angle = (dif / 20) * 30
+
+            ballEntity.components.ball.angle = angle
 
             if(ballEntity.components.ball.forward) {
                 ballEntity.components.ball.forward = false
