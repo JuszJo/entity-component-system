@@ -66,7 +66,7 @@ const entities = {}
 const player1 = new Entity("player1")
 
 player1.addComponent(new Position({
-    x: 1,
+    x: 0,
     y: 200
 }))
 
