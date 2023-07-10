@@ -94,6 +94,15 @@ export default class CollisionSystem {
             ball.x - ball.width / 2 < player.x + player.width &&
             ball.y - ball.height / 2 < player.y + player.height
         ) {
+
+            // collision response
+            if(playerEntity.name == "player2") {
+                ballEntity.components.position.value.x = 790 - ball.width / 2
+            }
+            else {
+                ballEntity.components.position.value.x = 10 + ball.width / 2
+            }
+
             const half = player.height / 2 + player.y
 
             const dif = ball.y - half
