@@ -11,6 +11,7 @@ import Ball from "./components/Ball.js";
 import Collision from "./components/Collision.js";
 import CollisionSystem from "./systems/CollisionSystem.js";
 import RenderSystem from "./systems/RenderSystem.js";
+import GameSystem from "./systems/GameSystem.js";
 
 const entities = {}
 
@@ -127,22 +128,26 @@ const collisionSystem = new CollisionSystem(entities)
 
 const renderSystem = new RenderSystem(entities)
 
+const gameSystem = new GameSystem(requestAnimationFrame(update), entities)
+
 movementSystem.listen()
 
 shootingSystem.listen()
 
-update()
-
 function update() {
-    movementSystem.movePlayer()
-
-    shootingSystem.updateBall()
-
-    collisionSystem.checkCollisions()
+    if(!gameSystem.end) {
+        movementSystem.movePlayer()
     
-    collisionSystem.checkWallCollision()
-
-    renderSystem.render()
-
-    requestAnimationFrame(update)
+        shootingSystem.updateBall()
+    
+        collisionSystem.checkCollisions()
+        
+        collisionSystem.checkWallCollision()
+    
+        renderSystem.render()
+        
+        gameSystem.listen()
+    
+        gameSystem.updateNumber(requestAnimationFrame(update))
+    }
 }

@@ -1,4 +1,5 @@
 import Collision from "../components/Collision.js"
+import MovementSystem from "./MovementSystem.js"
 
 export default class CollisionSystem {
     constructor(entities) {
@@ -26,6 +27,14 @@ export default class CollisionSystem {
                 else if(entity.y + entity.height / 2 > 600) {
                     currentEntity.components.position.value.y = 600 - entity.height / 2
                     currentEntity.components.ball.speedY *= -1
+                }
+                else if(entity.x - entity.width / 2 < 0) {
+                    console.log("player 1 loses");
+                    currentEntity.components.lose = true;
+                }
+                else if(entity.x + entity.width / 2 > 800) {
+                    console.log("player 2 loses");
+                    currentEntity.components.lose = true;
                 }
             }
             else {
@@ -96,7 +105,7 @@ export default class CollisionSystem {
             //     // console.log("bottom", dif);
             // }
 
-            const angle = (dif / 20) * 30
+            const angle = (dif / 25) * 30
 
             ballEntity.components.ball.angle = angle
 
@@ -128,6 +137,9 @@ export default class CollisionSystem {
                     }
                 }
             }
+
+            // increase ball speed on every bounce
+            MovementSystem.increaseBallSpeed(ballEntity)
         }
     }
 }

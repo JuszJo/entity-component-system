@@ -65,6 +65,11 @@ export default class MovementSystem {
         })
     }
 
+    static increaseBallSpeed(ballEntity) {
+        ballEntity.components.ball.speedX += 1
+        ballEntity.components.ball.speedY += 1
+    }
+
     movePlayer() {
         for(const id in this.entities) {
             const currentEntity = this.entities[id]
