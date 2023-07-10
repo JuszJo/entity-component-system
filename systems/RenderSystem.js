@@ -21,7 +21,7 @@ export default class RenderSystem {
             const currentEntity = this.entities[id]
 
             // console.log(currentEntity);
-            if(currentEntity.components.position && ! currentEntity.components.ball) {
+            if(currentEntity.components.position && !currentEntity.components.ball) {
                 this.drawingSurface.fillRect(
                     currentEntity.components.position.value.x,
                     currentEntity.components.position.value.y,

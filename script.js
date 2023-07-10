@@ -63,12 +63,14 @@ const entities = {}
 
 // entities[gun.id] = gun
 
+const playerStartingPoint = 275
+
 // player1
 const player1 = new Entity("player1")
 
 player1.addComponent(new Position({
     x: 0,
-    y: 200
+    y: playerStartingPoint
 }))
 
 player1.addComponent(new Dimension({
@@ -85,7 +87,7 @@ const player2 = new Entity("player2")
 
 player2.addComponent(new Position({
     x: 790,
-    y: 200
+    y: playerStartingPoint
 }))
 
 player2.addComponent(new Dimension({
@@ -104,7 +106,7 @@ const ball = new Entity("ball")
 
 ball.addComponent(new Position({
     x: 18,
-    y: 225
+    y: 300
 }))
 
 ball.addComponent(new Dimension({

@@ -21,11 +21,13 @@ export default class CollisionSystem {
 
             if(entity.name == "ball") {
                 if(entity.y - entity.height / 2 < 0) {
-                    currentEntity.components.position.value.y = entity.height / 2
+                    currentEntity.components.position.value.y = entity.height
                     currentEntity.components.ball.speedY *= -1
                 }
                 else if(entity.y + entity.height / 2 > 600) {
-                    currentEntity.components.position.value.y = 600 - entity.height / 2
+                    // currentEntity.components.position.value.y = (600 - entity.height / 2) - 3
+                    currentEntity.components.position.value.y = 600 - entity.height
+                    // console.log(currentEntity.components.position.value.y);
                     currentEntity.components.ball.speedY *= -1
                 }
                 else if(entity.x - entity.width / 2 < 0) {
@@ -97,10 +99,10 @@ export default class CollisionSystem {
 
             // collision response
             if(playerEntity.name == "player2") {
-                ballEntity.components.position.value.x = 790 - ball.width / 2
+                ballEntity.components.position.value.x = player.x - ball.width / 2
             }
             else {
-                ballEntity.components.position.value.x = 10 + ball.width / 2
+                ballEntity.components.position.value.x = player.x + player.width + ball.width / 2
             }
 
             const half = player.height / 2 + player.y
