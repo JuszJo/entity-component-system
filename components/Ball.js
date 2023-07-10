@@ -6,6 +6,6 @@ export default class Ball {
         this.angle = 0
         this.speedX = 5
         this.speedY = 5
-        this.maxSpeed = 10
+        this.maxSpeed = 8
     }
 }

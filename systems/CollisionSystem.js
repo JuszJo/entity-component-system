@@ -21,13 +21,11 @@ export default class CollisionSystem {
 
             if(entity.name == "ball") {
                 if(entity.y - entity.height / 2 < 0) {
-                    currentEntity.components.position.value.y = entity.height
+                    currentEntity.components.position.value.y = entity.height / 2
                     currentEntity.components.ball.speedY *= -1
                 }
                 else if(entity.y + entity.height / 2 > 600) {
-                    // currentEntity.components.position.value.y = (600 - entity.height / 2) - 3
-                    currentEntity.components.position.value.y = 600 - entity.height
-                    // console.log(currentEntity.components.position.value.y);
+                    currentEntity.components.position.value.y = 600 - entity.height / 2
                     currentEntity.components.ball.speedY *= -1
                 }
                 else if(entity.x - entity.width / 2 < 0) {

@@ -22,7 +22,7 @@ export default class ShootingSystem {
                         shoot = true
                         console.log("Shoot");
 
-                        this.updateBall()
+                        // this.updateBall()
 
                         // this.createBullet(currentEntity.components.position.value)
                     }
@@ -52,7 +52,7 @@ export default class ShootingSystem {
                 else {
                     const x = Math.cos(-angle)
                     const y = Math.sin(-angle)
-    
+                    
                     currentEntity.components.position.value.x -= (x * currentEntity.components.ball.speedX)
                     currentEntity.components.position.value.y -= (y * currentEntity.components.ball.speedY)
                 }                
